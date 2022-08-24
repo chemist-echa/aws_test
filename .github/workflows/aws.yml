@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [awstest]
+    branches: [master]
 
 name: AWS ECR push
 
