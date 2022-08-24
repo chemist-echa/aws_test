@@ -33,7 +33,7 @@ jobs:
         run: |
           # Build a docker container and push it to ECR 
           docker build -t ample-im .
-          docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
           echo "Pushing image to ECR..."
           docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/${{ steps.vars.outputs.branch_name }}
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
