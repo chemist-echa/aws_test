@@ -6,6 +6,7 @@ phases:
       docker: 18
     commands:
       - aws --version
+      - $(aws ecr get-login --no-include-email --region ap-northeast-2)
       - npm install yarn
   build:
     commands:
@@ -15,6 +16,6 @@ phases:
       - docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
       - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"ample-im-container","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
+      - printf '[{"name":"nestjs-example-container","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
