@@ -15,7 +15,4 @@ phases:
     commands:
       - docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
       - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
-      - echo Writing image definitions file...
-      - printf '[{"name":"nestjs-example-container","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
+          
