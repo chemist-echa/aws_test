@@ -1,17 +1,21 @@
 version: 0.2
+
 phases:
+  install:
+    runtime-versions:
+      docker: 18
+    commands:
+      - aws --version
+      - $(aws ecr get-login --no-include-email --region ap-northeast-2)
+      - npm install yarn
   build:
     commands:
-      - echo Build Starting on `date`
+      - docker build -t ample-im .
   post_build:
     commands:
-      - echo $(basename ./build/libs/*.jar)
-      - pwd
+      - docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+      - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"ample-im-container","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
 artifacts:
-  files:
-    - appspec.yml
-    - build/libs/*.jar
-  discard-paths: yes
-cache:
-  paths:
-    - '/root/.gradle/caches/**/*'
+  files: imagedefinitions.json
