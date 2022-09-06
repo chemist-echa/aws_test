@@ -19,6 +19,4 @@ phases:
     commands:
       - echo post_build
        - printf '[{"name":"your.task.definition.name","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
-  
-  artifacts:
-    files: imagedefinitions.json
+ 
