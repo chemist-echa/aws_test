@@ -1,22 +1,29 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 12
-    commands:
-      - echo install
-
   pre_build:
+    on-failure: ABORT
     commands:
-      - echo pre_build
-
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com
   build:
+    on-failure: ABORT
     commands:
-      - echo build
-
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t ample-im .
+      - docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
   post_build:
+    on-failure: ABORT
     commands:
-      - echo post_build
-       - printf '[{"name":"your.task.definition.name","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
- 
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+
+# 추가한 부분.
+# 프로젝트 내 taskdef.json, appspec.yml 을 추가하고 build 단계 후 해당 파일들만을
+# BuildArtifact 로 지정하여 S3 업로드 될 수 있도록 설정하였다.
+artifacts:
+  files:
+    - taskdef.json
+    - appspec.yml
