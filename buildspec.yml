@@ -18,7 +18,7 @@ phases:
   post_build:
     commands:
       - echo post_build
-       - printf '[{"name":"your.task.definition.name","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+       - printf '[{"name":"your.task.definition.name","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json
   
   artifacts:
     files: imagedefinitions.json
