@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{` `}
+          Get started by editing TEST TEST {` `}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
