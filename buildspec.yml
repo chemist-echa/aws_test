@@ -19,6 +19,8 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+      - printf '[{"name":"aws-code-test","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json 
+
 
 # 추가한 부분.
 # 프로젝트 내 taskdef.json, appspec.yml 을 추가하고 build 단계 후 해당 파일들만을
@@ -27,3 +29,4 @@ artifacts:
   files:
     - appspec.yml
     - build/*
+    - imagedefinitions.json 
