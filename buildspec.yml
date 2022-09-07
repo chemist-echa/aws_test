@@ -19,7 +19,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
-      - printf '[{"name":"aws-code-test","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json 
+      - printf '[{"name":"ample-im-test","imageUri":"%s"}]' 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest > imagedefinitions.json 
 
 
 # 추가한 부분.
