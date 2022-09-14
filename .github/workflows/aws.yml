@@ -18,7 +18,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ap-northeast-2
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -32,13 +32,14 @@ jobs:
           IMAGE_TAG: latest
         run: |
           # Build a docker container and push it to ECR 
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -t ample-im .
           
       - name: docker login
         run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com
  
       - name: tag image
-        run: docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+        run: |
+          docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
           
       - name: push image
         run: |
@@ -53,7 +54,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: ample-im-test
-          image: ${{ steps.build-image.outputs.image }}
+          image: latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -62,3 +63,4 @@ jobs:
           service: test
           cluster: ample-im-test
           wait-for-service-stability: true
+    
