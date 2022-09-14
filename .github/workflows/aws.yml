@@ -63,5 +63,3 @@ jobs:
           service: test
           cluster: ample-im-test
           wait-for-service-stability: true
-    
-          
