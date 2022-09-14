@@ -37,7 +37,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest",
+      "image": "latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -64,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:080359934252:task-definition/ample-im-test:11",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:080359934252:task-definition/ample-im-test:18",
   "family": "ample-im-test",
   "requiresAttributes": [
     {
@@ -83,12 +83,6 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
     },
     {
@@ -96,12 +90,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
       "targetId": null,
@@ -126,7 +114,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 11,
+  "revision": 18,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
