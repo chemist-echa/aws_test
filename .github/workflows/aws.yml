@@ -38,8 +38,7 @@ jobs:
         run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com
  
       - name: tag image
-        run: |
-          docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
+        run: docker tag ample-im:latest 080359934252.dkr.ecr.ap-northeast-2.amazonaws.com/ample-im:latest
           
       - name: push image
         run: |
